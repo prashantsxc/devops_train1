@@ -60,7 +60,7 @@ Agenda:
   ls target/
   ls target/classes/
   
- # Topic: Git
+# Topic: Git
 # Installing Git (On Developer's Machine)
 hostname
 yum -y install git
@@ -84,11 +84,127 @@ git --version
 
 Repository --> New --> Name: reponame  --> Public --> Initialize README file --> Create 
 
-# Conf
-sanjiv karn10:45 AM
 # Configuring Git (On Developer's Machine)
 hostname
 git config --global user.name "sk76"
 git config --global user.email "t2rajma33@gmail.com"
 git config --global credential.helper  'cache --timeout=28800'
+git config --list 
+
+
+# Initialize local repository
+cd /root/java_project/
+ls
+cd javawebapp
+git init
+ls
+ls -a
+# .git --> local repository
+ls .git
+ls
+
+# Link the Local Git Repository with the Remote Github Repository
+pwd
+ls
+ls -a
+git remote add origin https://github.com/sk76/ncelllab1.git
 git config --list
+
+
+# Pull Codes/files from Remote Repository to the Local Repository (Note: Do it for the first time before pushing the local files to the remote repository)
+pwd
+ls
+git pull origin master
+ls
+
+
+# Record the local changes/newly created files/dirs into the Staging Area
+git add -A
+
+# git add -A --> To record/update all the modifications or newly added files/dirs into the local repository
+
+
+# Commit the Changes to the Local Repository
+ls
+git commit -m "first commit"
+ls -a
+
+
+# Push the Content of Local repository to the Remote Repository (i.e. Github Repository)
+pwd
+ls
+git push origin master
+
+# Working Directory --> (git add) Staging Area --> (git commit) Local Repository --> (git push) Remote Repository
+
+
+# To Add Selected Files to the Staging Area
+
+git status --> Displays status of currently added/commited files
+vi file1
+vi file2
+git status
+rm README.md 
+ls
+git status
+git push origin master
+git status
+git add file1
+git status
+git commit -m "file1 added"
+git status
+git push origin master
+git status
+git add -A
+git status
+git commit -m "file2 added and README deleted"
+git status
+git push origin master
+
+
+# Undo Chagnes
+git status
+ls
+vi file1
+git status
+
+# Case-I: File has been modified but not sataged yet
+cat file1
+git status
+vi file1
+cat file1
+git checkout file1
+cat file1
+git status
+
+# Case-II: Changes added into the staging area but not committed yet
+vi file1
+cat file1
+git status
+git add file1
+git status
+cat file1
+git checkout file1 --> will not work
+cat file1 --> undo not performed
+git reset HEAD file1
+git checkout file1
+cat file1 --> undo takes place
+git status
+
+Case-III: Changes have been staged and committed
+vi file1
+git status
+git add file1
+git status
+git commit -m "file1 modified"
+git status
+cat file1
+# git log --> Displays commit history
+git log
+revert -n 5354a6ecc39d5ef3e1557f493f2da1a3253f163c
+cat file1
+git status
+git add file1
+git commit -m "new commit for file1"
+git status
+cat file1
